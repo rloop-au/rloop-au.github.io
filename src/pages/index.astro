@@ -1,31 +1,157 @@
 ---
 import Base from '../layouts/Base.astro';
 import Newsletter from '../components/Newsletter.astro';
-import { mailto } from '../site';
+
+// Homepage follows the StoryBrand order: hero (want + CTA), stakes, value,
+// guide (empathy + authority), plan, explanation, then secondary offers.
+const diagnostic = '/chat?topic=flow-diagnostic';
+
+const clients = [
+  { name: 'Government of South Australia', logo: '/images/QSA0YC-sa-gov-logo-300x300.jpg' },
+  { name: 'SA Power Networks', logo: '/images/8EB93O-sa-powernetworks-logo-300x300.jpg' },
+  { name: 'The University of Adelaide', logo: '/images/C9O8I2-uofabw.png' },
+  { name: 'Cuscal', logo: '/images/6c914c-screenshot-2023-01-05-at-9.49.22-am.png' },
+];
+
+const stakes = [
+  {
+    title: 'Dates you can’t defend',
+    body: 'The board asks when it will land. You give the best date you have, knowing it rests on status reports and hope.',
+  },
+  {
+    title: 'Headcount that doesn’t move the needle',
+    body: 'More people go in, yet delivery barely speeds up, because the work is waiting in queues, not short of hands.',
+  },
+  {
+    title: 'Another transformation with nothing to show',
+    body: 'New frameworks, new ceremonies, new tools. A year later nobody can show what actually changed.',
+  },
+];
+
+const outcomes = [
+  {
+    title: 'See where capacity disappears',
+    body: 'Where work waits, how long, and against which shared teams and dependencies. Drawn from the tools you already use.',
+  },
+  {
+    title: 'Forecasts with honest confidence',
+    body: 'Delivery forecasts built from your own history, with the range stated plainly instead of hidden behind a single date.',
+  },
+  {
+    title: 'Know which change pays most',
+    body: 'Interventions ranked by the capacity they free up, so you decide where to invest before budget is committed.',
+  },
+  {
+    title: 'Only what changes a decision',
+    body: 'We measure just enough to make the next call with confidence. No dashboards full of vanity metrics.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Connect your delivery data',
+    body: 'Read-only access to the tools your teams already use. No new platform to adopt and nothing new for teams to fill in.',
+  },
+  {
+    title: 'See where work waits and what it costs',
+    body: 'Within weeks you get a clear picture of your delivery system: queues, dependencies, and the capacity they consume.',
+  },
+  {
+    title: 'Fund the change that frees the most',
+    body: 'Act on the highest-leverage change first, track whether it worked, and take the evidence to your board.',
+  },
+];
+
+const promises = [
+  'No new platform to buy or roll out',
+  'No scorecards on your people: we model the system, not individuals',
+  'Your data stays yours',
+];
 ---
-<Base description="Agile training and coaching services. Deliver value to your customers faster, with fewer headaches and of higher quality.">
+<Base description="Recursive Loop helps technology leaders see where delivery capacity disappears, forecast dates they can defend, and fund the change that frees up the most capacity.">
   <section class="hero">
     <img src="/images/08bb11-recurvise-loop-homepage-web-res-v2.jpg" alt="" fetchpriority="high" />
     <div class="wrap hero-inner">
-      <h1>Together, we’ll ignite a spark, unbridling your organisation’s creativity and potential.</h1>
-      <p class="lede">Deliver value to your customers faster, with fewer headaches and of higher quality with our agile training and services.</p>
+      <p class="eyebrow">For CIOs and technology leaders</p>
+      <h1>See where your delivery capacity goes, and get it back.</h1>
+      <p class="lede">We turn the delivery data you already have into a clear picture of where work waits and what that waiting costs, so you can forecast with confidence and invest where it counts.</p>
+      <p class="actions">
+        <a class="btn" href={diagnostic}>Book a flow diagnostic</a>
+        <a class="textlink" href="#how-it-works">See how it works</a>
+      </p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
+      <h2 class="prose">You can see what goes in and what comes out. The trouble is everything in between.</h2>
+      <ul class="tiles">
+        {stakes.map((s) => (
+          <li><strong>{s.title}</strong>{s.body}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section light">
+    <div class="wrap">
       <p class="eyebrow">Flow insights</p>
-      <h2>See how work really moves through your organisation.</h2>
-      <p class="lede prose">Most organisations can see what goes in and what comes out, but not the machine in between. That is where capacity disappears.</p>
-      <p class="prose">We build custom insights solutions from the delivery data you already produce, so leaders can see where work waits, what that waiting costs, and which change would move it most. No new platform to adopt, and no scorecard on your people: we model the system, not the individuals in it.</p>
-      <ul class="methods">
-        <li><strong>Flow metrics, read as signals.</strong> Lead time, waiting time, work in progress and predictability, drawn from the tools you already use and read as diagnostic signals rather than targets.</li>
-        <li><strong>Measurement that reduces uncertainty.</strong> We measure only what would change a decision. Small samples, calibrated estimates and Bayesian updating tell you more than a dashboard full of vanity metrics.</li>
-        <li><strong>Forecasts you can defend.</strong> Delivery forecasts built from your own history, with the uncertainty stated plainly instead of hidden behind a single date.</li>
-        <li><strong>Dependencies and flow economics.</strong> Where work queues against shared teams, and what that delay costs in capacity, so interventions can be ranked by leverage before budget is committed.</li>
+      <h2 class="prose">Run delivery as a system you can see and steer.</h2>
+      <ul class="tiles">
+        {outcomes.map((o) => (
+          <li><strong>{o.title}</strong>{o.body}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap row">
+      <div>
+        <h2>We know what it’s like to be asked for a date the system can’t support.</h2>
+        <p>We’ve spent decades inside delivery organisations, from tightly regulated, safety-critical environments to start-ups, and we’ve seen good leaders forced to steer on gut feel because nobody could show them how work really moves.</p>
+        <p>Michael Fagan has been building software for 25 years and holds a degree in Mathematics and an M.Sc. in Machine Learning from Trinity College Dublin. Martin Kearns was one of the first three Scrum Coaches certified by the Scrum Alliance.</p>
+        <a class="textlink" href="/our-people">Meet the team</a>
+      </div>
+      <div>
+        <p class="eyebrow">Trusted by</p>
+        <div class="logos small">
+          {clients.map((c) => (
+            <figure>
+              <img src={c.logo} alt={`${c.name} logo`} loading="lazy" />
+              <figcaption>{c.name}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark" id="how-it-works">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps to a delivery system you can see.</h2>
+      <ol class="steps">
+        {steps.map((s) => (
+          <li><strong>{s.title}</strong>{s.body}</li>
+        ))}
+      </ol>
+      <ul class="promises">
+        {promises.map((p) => <li>{p}</li>)}
       </ul>
       <p class="actions">
-        <a class="btn" href={mailto('Flow insights enquiry')}>Talk to us about flow insights</a>
+        <a class="btn" href={diagnostic}>Book a flow diagnostic</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap prose-block">
+      <h2>Stop steering on instinct.</h2>
+      <p class="lede">Most technology leaders are asked to commit dates and budgets for a system they can’t see. So capacity leaks into queues and handoffs, headcount goes up while delivery stays flat, and each new initiative is funded on hope rather than evidence.</p>
+      <p>It doesn’t have to be that way. Your teams already produce the data needed to see how work really moves. We read it as a set of signals, not targets, and turn it into forecasts you can stand behind and a ranked list of the changes that would free up the most capacity. You go into the next board conversation with evidence, not optimism.</p>
+      <p class="actions">
+        <a class="btn" href={diagnostic}>Book a flow diagnostic</a>
         <a class="textlink" href="/insights">Read our thinking on measurement</a>
       </p>
     </div>
@@ -35,10 +161,13 @@ import { mailto } from '../site';
     <div class="wrap row">
       <img src="/images/25be6f-recursive-loop-gen-image-home.jpg" alt="Workshop participants collaborating around a table" loading="lazy" />
       <div>
-        <h2>Agile services</h2>
-        <p>Through our agile services, your teams are empowered to adjust to changing requirements nimbly and efficiently, all while ensuring continuous delivery flow. Our services promote the reduction of technical debt, enhancement of customer satisfaction, and delivery of top-notch products.</p>
-        <p>Explore our Re:Agile training classes.</p>
-        <a class="btn" href="/classes">Let’s go</a>
+        <p class="eyebrow">For your teams</p>
+        <h2>Help your teams make the change stick</h2>
+        <p>Once you know which change matters most, we help your teams make it: hands-on coaching in DevOps, scaling and team practice, plus accredited Re:Agile training classes.</p>
+        <p class="actions">
+          <a class="btn" href="/coaching">Coaching</a>
+          <a class="textlink" href="/classes">Training classes</a>
+        </p>
       </div>
     </div>
   </section>
@@ -46,8 +175,8 @@ import { mailto } from '../site';
   <section class="section dark">
     <div class="wrap row">
       <div>
-        <h2>Stay up to date</h2>
-        <p class="lede">Sign up for Re:Agile News</p>
+        <h2>Ideas worth bringing to your next leadership meeting</h2>
+        <p class="lede">Short, practical writing on measurement, forecasting and better delivery decisions. Sign up for Re:Agile News.</p>
         <Newsletter />
       </div>
       <img src="/images/11fe58-recurvise-loop-signup-web-res.jpg" alt="" loading="lazy" />
@@ -56,17 +185,30 @@ import { mailto } from '../site';
 </Base>
 
 <style>
-  .hero { position: relative; background: var(--dark); color: var(--white); min-height: 520px; display: flex; align-items: center; }
-  .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+  .hero { position: relative; background: var(--dark); color: var(--white); min-height: 560px; display: flex; align-items: center; }
+  .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .45; }
   .hero-inner { position: relative; padding-top: clamp(64px, 10vw, 140px); padding-bottom: clamp(64px, 10vw, 140px); }
-  .hero h1 { max-width: 14em; }
+  .hero h1 { max-width: 15em; }
   .hero .lede { max-width: 34em; }
+  .hero .textlink { border-color: var(--white); }
   .eyebrow { font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: .6em; }
-  .methods { list-style: none; padding: 0; margin: 1.6em 0 2em; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px 40px; }
-  .methods li { margin: 0; padding-top: 14px; border-top: 2px solid var(--line); font-size: .98rem; }
-  .methods strong { display: block; margin-bottom: .25em; }
-  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
-  .textlink { font-weight: 500; text-decoration: none; border-bottom: 2px solid var(--ink); }
+  .hero .eyebrow, .dark .eyebrow { color: #e0a3a7; }
+  .tiles { list-style: none; padding: 0; margin: 1.6em 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px 36px; }
+  .tiles li { margin: 0; padding-top: 14px; border-top: 2px solid var(--line); font-size: .98rem; }
+  .tiles strong { display: block; margin-bottom: .3em; font-size: 1.05rem; }
+  .steps { list-style: none; counter-reset: step; padding: 0; margin: 2em 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 40px; }
+  .steps li { counter-increment: step; margin: 0; padding-top: 14px; border-top: 2px solid #3a3936; }
+  .steps li::before { content: counter(step); display: block; font-size: 2.2rem; font-weight: 500; line-height: 1; color: #e0a3a7; margin-bottom: .3em; }
+  .steps strong { display: block; margin-bottom: .3em; font-size: 1.05rem; }
+  .promises { list-style: none; padding: 0; margin: 0 0 2em; display: flex; flex-wrap: wrap; gap: 8px 28px; color: #b9b6ae; font-size: .95rem; }
+  .promises li { margin: 0; }
+  .promises li::before { content: '✓'; color: #e0a3a7; margin-right: .5em; }
+  .prose-block { max-width: calc(var(--prose) + 2 * var(--gutter)); }
+  .logos.small { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .logos.small img { max-height: 90px; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 1.6em; }
+  .textlink { font-weight: 500; text-decoration: none; border-bottom: 2px solid currentColor; }
   .textlink:hover { color: var(--accent); border-color: var(--accent); }
+  .dark .textlink:hover, .hero .textlink:hover { color: #e0a3a7; border-color: #e0a3a7; }
   .dark :global(.field input) { border-color: #3a3936; background: #1a1917; color: var(--dark-ink); }
 </style>
